@@ -10,7 +10,7 @@ def ask_question():
     guess = str(input("What letter do you think is in the word? ")).lower()
     for letter in guess:
         if guess not in string.ascii_letters:
-            print("thats not a letter! Try again.")
+            print("Thats not a letter! Try again.")
             ask_question()
     return guess
 
@@ -24,6 +24,7 @@ while lives >0:
             #do something
     else:
         print("Its not there! You lose a life!")
+        print("You have " + str(lives) + " lives left.")
         lives-=1
         guess=ask_question()
         if lives == 0:
