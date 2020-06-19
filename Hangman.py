@@ -10,8 +10,9 @@ def progress(secret_word=secret_word):
     for i in range(length):
         answer_progress.append("_")
     print("Here's your progress: " +str(answer_progress))
+    return answer_progress
 
-progress()
+answer_progress  = progress()
 #define number of lives
 lives =4
 # Function to pose the question and get response
@@ -26,15 +27,25 @@ def lose_a_life(lives=lives):
 
 guess = ask_question()
 while lives >0:
+    count = 0
 #check if letter is in the chosen word
     for letter in guess:
         if letter not in string.ascii_letters:
             print("Thats not a letter! Try again.")
             guess = ask_question()
 
+    for i in secret_word:
+        if i == guess:
+            answer_progress[count] = str(i)
+        count+=1
+
     if guess in correct_response:
         print(str(guess) +"? " + "Thats in there! Go again!")
         correct_response = [i for i in correct_response if i != guess]
+        print("Heres your progress: " +str(answer_progress))
+        if correct_response == []:
+            print("Congratulations, you got there! It was..." + str(secret_word) +"!")
+            break
         guess = ask_question()
 
     elif guess == secret_word:
