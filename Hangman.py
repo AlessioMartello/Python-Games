@@ -1,10 +1,13 @@
 import string
+import random
 #intro
 
 print("Welcome to this game of hangman! You get 5 attempts to guess the secret word. You can guess just a letter or the whole word in one go, enjoy!")
+# define secret word list and choose one at random
+secret_word_list=["hangman", "painting", "didgeridoo", "people", "television", "banana", "onomatopoeia", "traffic", "engineer"]
+random_word_selector = random.randint(0,len(secret_word_list))
+secret_word = secret_word_list[random_word_selector]
 
-# define secret word
-secret_word = "hangman"
 correct_response=list(secret_word)
 def progress(secret_word=secret_word):
     length = len(secret_word)
@@ -28,15 +31,13 @@ def lose_a_life(lives=lives):
     return lives
 
 guess = ask_question()
-
 # If the user still has a life left, run the sequence
 while lives >0:
     count = 0
     # check if letter is in the chosen word
     [print("Thats not a letter! Try again.") for letter in guess if letter not in string.ascii_letters]
-    guess = ask_question()
 
-    # create the visual progression towrds the answer
+    # create the visual progression towards the answer
     for i in secret_word:
         if i == guess:
             answer_progress[count] = str(i)
